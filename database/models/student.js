@@ -49,7 +49,7 @@ module.exports = (sequelize, DataTypes) => {
           },
           len: {
             args: [10, 50],
-            msg: "Student can can take a minimum of 10 and a maximum of 50 characters"
+            msg: "Student Number can can take a minimum of 10 and a maximum of 50 characters"
           }
       }
     },
@@ -150,6 +150,12 @@ module.exports = (sequelize, DataTypes) => {
       unique: {
         args: true,
         msg: 'email should be unique'
+      },
+      validate: {
+        isEmail: {
+          args: true,
+          msg: "Invalid email"
+        }
       }
     },
     telephone: {
