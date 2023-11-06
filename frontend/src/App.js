@@ -4,16 +4,16 @@ import './App.css';
 import axios from 'axios';
 
 function App() {
-  const [ developers, setDevelopers ] = useState([]);
+  const [ students, setStudents ] = useState([]);
 
   useEffect(()=>{
-    fetchDevelopers()
+    fetchStudents()
   }, []);
 
-  const fetchDevelopers = async () => {
-    const response = await axios.get('http://localhost:4000/developer');
+  const fetchStudents = async () => {
+    const response = await axios.get('http://localhost:3009/students');
      if(response){
-        setDevelopers(response.data.developers);
+        setStudents(response.data.students);
      }
   }
 
@@ -27,7 +27,7 @@ function App() {
               <th>First Name</th>
               <th>Last Name</th>
               <th>OtherName</th>
-              <th>Developer Number</th>
+              <th>Student Number</th>
               <th>Registration Number</th>
               <th>Gender</th>
               <th>Email</th>
@@ -37,18 +37,18 @@ function App() {
           </thead>
           <tbody>
             {
-              developers?.map((developer, index)=>{
+              students?.map((student, index)=>{
                 return (<tr>
                   <td>{index + 1}</td>
-                  <td>{developer.firstName}</td>
-                  <td>{developer.lastName}</td>
-                  <td>{developer.otherNames}</td>
-                  <td>{developer.developerNumber}</td>
-                  <td>{developer.registrationNumber}</td>
-                  <td>{developer.gender}</td>
-                  <td>{developer.email}</td>
-                  <td>{developer.telephone}</td>
-                  <td>{developer.dateOfBirth}</td>
+                  <td>{student.firstName}</td>
+                  <td>{student.lastName}</td>
+                  <td>{student.otherNames}</td>
+                  <td>{student.studentNumber}</td>
+                  <td>{student.registrationNumber}</td>
+                  <td>{student.gender}</td>
+                  <td>{student.email}</td>
+                  <td>{student.telephone}</td>
+                  <td>{student.dateOfBirth}</td>
                 </tr>)
               })
             }

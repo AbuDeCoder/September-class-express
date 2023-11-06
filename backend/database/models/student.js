@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Developer extends Model {
+  class Student extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Developer.init({
+  Student.init({
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
@@ -31,44 +31,44 @@ module.exports = (sequelize, DataTypes) => {
           }
       }
     },
-    developerNumber:{
+    studentNumber:{
       type: DataTypes.STRING(50),
       allowNull: false,
       unique: {
         args: true,
-        msg: "developerNumber must be unique"
+        msg: "studentNumber must be unique"
       },
       validate: {
           notEmpty: {
             args: true,
-            msg: "Empty string is not a valid developer number"
+            msg: "Empty string is not a valid studentNumber"
           },
           notNull: {
             args: true,
-            msg: "Developer number required"
+            msg: "StudentNumber is required"
           },
           len: {
             args: [10, 50],
-            msg: "Developer Number can can take a minimum of 10 and a maximum of 50 characters"
+            msg: "Student Number can can take a minimum of 10 and a maximum of 50 characters"
           }
       }
     },
      
-    developerNumber:{
+    registrationNumber:{
       type: DataTypes.STRING(50),
       allowNull: false,
       unique: {
         args: true,
-        msg: "developer number must be unique"
+        msg: "registrationNumber must be unique"
       },
       validate: {
           notEmpty: {
             args: true,
-            msg: "Empty string is not a valid developer number"
+            msg: "Empty string is not a valid registrationNumber"
           },
           notNull: {
             args: true,
-            msg: "developer number is required"
+            msg: "registrationNumber is required"
           },
           len: {
             args: [10, 50],
@@ -168,10 +168,10 @@ module.exports = (sequelize, DataTypes) => {
     },
   }, {
     sequelize,
-    modelName: 'Developer',
+    modelName: 'Student',
     timestamps: true,
     underscored: false,
     freezeTableName: true
   });
-  return Developer;
+  return Student;
 };

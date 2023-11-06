@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "DeveloperFrontEndAssignment",
-    "password": "Williams@700",
-    "database": "Developer-db",
+    "username": "DancingTourist",
+    "password": "Qd3]6zFOgMJ5(]yS",
+    "database": "mission_possible",
     "dialect": "mysql"
   },
   "test": {
