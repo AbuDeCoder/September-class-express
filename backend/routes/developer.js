@@ -1,36 +1,36 @@
 const express = require('express');
 const router = express.Router();
-const { createStudent, listAll } = require('../controllers/student-controller');
-const { logModifiedName, titleCaseName }  = require('../middlewares/student');
+const {Developer, Sequelize, sequelize} = require("../database/models")
+const { createDeveloper, listAll } = require('../controllers/developer-controller');
+const { logModifiedName, titleCaseName }  = require('../middlewares/developer');
 
 router.post('/create', 
-  titleCaseName,
-  logModifiedName,
-  createStudent
-);
-
+  // titleCaseName,
+  // logModifiedName,
+  createDeveloper
+)
 
 router.post('/find-by-id', function(request, response, next){
-  const { name, children } = request.body;
+  const { name, language } = request.body;
   const id = request.query.id;
   //const userId = request.params.userId;*/
  
   return response.send([
     {
       id,
-      router: 'students',
+      router: 'developers',
       method: 'POST',
       name,
       age: 45,
-      children
+      language
     },
     {
       id,
-      router: 'students',
+      router: 'developer',
       method: 'POST',
       name,
       age: 45, 
-      children
+      language
     }
 ]);
 });

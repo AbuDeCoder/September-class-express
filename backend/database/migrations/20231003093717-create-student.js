@@ -2,14 +2,14 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Student', {
+    await queryInterface.createTable('Developer', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      studentNumber: {
+      developerNumber: {
         type: Sequelize.STRING(50),
         unique: true,
         allowNull: false
@@ -66,6 +66,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Student');
+    await queryInterface.dropTable('Developer');
   }
 };

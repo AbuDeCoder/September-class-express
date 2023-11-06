@@ -1,14 +1,14 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var cors = require('cors');
-var indexRouter = require('./routes/index');
-var studentsRouter = require('./routes/students');
-var parentsRouter = require('./routes/parents');
+let createError = require('http-errors');
+let express = require('express');
+let path = require('path');
+let cookieParser = require('cookie-parser');
+let logger = require('morgan');
+let cors = require('cors');
+let indexRouter = require('./routes/index');
+let developersRouter = require('./routes/developer');
+// let parentsRouter = require('./routes/parents');
 
-var app = express();
+let app = express();
 
 app.use(cors())
 
@@ -23,8 +23,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/students', studentsRouter);
-app.use('/mypeople', parentsRouter)
+app.use('/developer', developersRouter);
+// app.use('/mypeople', parentsRouter)
 
 
 // catch 404 and forward to error handler
