@@ -7,7 +7,8 @@ function App() {
   const [students, setStudents] = useState([]);
   const [visible, setVisible] = useState(false);
   const [validated, setValidated] = useState(false);
-  const formRef = useRef(null)
+  const formRef = useRef(null);
+  const uploadFileForm = useRef(null);
 
   useEffect(() => {
     fetchStudents()
@@ -66,6 +67,15 @@ function App() {
     formRef.current.requestSubmit();
   }
 
+  const submitImage = async (event) =>{
+    event.preventDefault();
+    const profileImage = uploadFileForm.current.profileImage.files[0];
+    console.log('profileImage', profileImage);
+    const formData = new FormData();
+    formData.append('profileImage', profileImage);
+    const response = axios.post('http://localhost:3009/students/upload-profile', formData);
+  }
+
   return (
     <div className="App">
       <Container>
@@ -117,6 +127,15 @@ function App() {
               </tbody>
             </Table>
           </Col>
+          <Col md={12} xs={12}>
+            <div style={{ display:'flex', flexDirection: 'column'}}>
+              <form ref={uploadFileForm} onSubmit={(event)=>submitImage(event)}>
+                <input required name="profileImage" type="file"/>
+                <input type="submit" value="upload image"/>
+              </form>
+              <img src="http://localhost:3009/images/Alias missing.png"/>
+            </div>
+          </Col>
         </Row>
       </Container>
 
@@ -138,7 +157,7 @@ function App() {
               <Col xs={12} md={6}>
                 <Form.Group className="mb-2"  controlId="firstName">
                   <Form.Label>FirstName</Form.Label>
-                  <Form.Control required={true} name='firstName' type="text" placeholder="Enter first name" />
+                  <Form.Control required={true} name='firstName' type="file" placeholder="Enter first name" />
                   <Form.Control.Feedback type="invalid">
                     First name is required.
                   </Form.Control.Feedback>

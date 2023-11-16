@@ -1,5 +1,5 @@
 const { Student, Sequelize, sequelize } = require('../database/models')
-
+const { Op } = Sequelize;
 async function  createStudent(request, response){
     try{
        const student = await Student.create(request.body);
@@ -20,7 +20,27 @@ async function  listAll(request, response){
     }
 }
 
+async function  login(request, response){
+    try{
+       const { studentNumber, password } = req.body;
+       //find a user matching studentNumber/username/email/telephone/employedId/
+        const student = await Student.findOne({ 
+            where: { 
+                studentNumber: {
+                    [Op.eq]: studentNumber
+                }
+            }
+        });
+        
+        return response.status(200).send({ students})
+    } catch(error) {
+        console.error(error);
+        return response.status(500).send({ error })
+    }
+}
+
 module.exports = {
     createStudent,
-    listAll
+    listAll,
+    login
 }
